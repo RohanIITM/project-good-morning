@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rZfj8txS2k1ifK+ib/Xt2C4ipv26iJ5R6L4p4Xl/t1W1Rovyp5A8I0ntwF2Jb6wd" crossorigin="anonymous">
+    <title>Calculator</title>
+    <style>
+        /* Responsive design for the calculator */
+        .calculator {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f7f7f7;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .display {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator text-center">
+        <input type="text" class="form-control display mb-3" id="display" disabled>
+        <div class="row">
+            <button class="btn btn-light col" onclick="pressKey('7')">7</button>
+            <button class="btn btn-light col" onclick="pressKey('8')">8</button>
+            <button class="btn btn-light col" onclick="pressKey('9')">9</button>
+            <button class="btn btn-warning col" onclick="pressKey('/')">/</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-light col" onclick="pressKey('4')">4</button>
+            <button class="btn btn-light col" onclick="pressKey('5')">5</button>
+            <button class="btn btn-light col" onclick="pressKey('6')">6</button>
+            <button class="btn btn-warning col" onclick="pressKey('*')">*</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-light col" onclick="pressKey('1')">1</button>
+            <button class="btn btn-light col" onclick="pressKey('2')">2</button>
+            <button class="btn btn-light col" onclick="pressKey('3')">3</button>
+            <button class="btn btn-warning col" onclick="pressKey('-')">-</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-light col" onclick="pressKey('0')">0</button>
+            <button class="btn btn-light col" onclick="pressKey('.')">.</button>
+            <button class="btn btn-primary col" onclick="calculate()">=</button>
+            <button class="btn btn-warning col" onclick="pressKey('+')">+</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-danger col mt-3" onclick="clearDisplay()">C</button>
+        </div>
+    </div>
+
+    <script>
+        let expression = '';
+
+        // Function to append character to the display
+        function pressKey(key) {
+            expression += key;
+            document.getElementById('display').value = expression;
+        }
+
+        // Function to calculate the result
+        function calculate() {
+            try {
+                expression = eval(expression).toString();
+                document.getElementById('display').value = expression;
+            } catch (e) {
+                document.getElementById('display').value = 'Error';
+                expression = '';
+            }
+        }
+
+        // Function to clear the display
+        function clearDisplay() {
+            expression = '';
+            document.getElementById('display').value = '';
+        }
+    </script>
+</body>
+</html>
